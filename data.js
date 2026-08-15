@@ -23,7 +23,12 @@ const RESUME_VERSIONS = {
       role: "Java Backend Developer",
       tagline: "Пишу код, который не будят по ночам.",
       location: "Tashkent, UZ",
-      email: "you@example.com",
+      // email хранится в base64, а не открытым текстом — так его не подхватят
+      // простые скрейперы, которые парсят HTML/JS в поисках "mailto:"/"@".
+      // Чтобы поменять email: открой консоль браузера (F12) и выполни
+      //   btoa("твой@email.com")
+      // либо в терминале: echo -n "твой@email.com" | base64
+      emailEncoded: "eW91QGV4YW1wbGUuY29t", // you@example.com
       github: "github.com/yourhandle",
       telegram: "@yourhandle",
       availability: "Открыт к предложениям"
@@ -118,7 +123,7 @@ const RESUME_VERSIONS = {
       role: "Java Backend Developer",
       tagline: "Коротко и по делу.",
       location: "Tashkent, UZ",
-      email: "you@example.com",
+      emailEncoded: "eW91QGV4YW1wbGUuY29t", // you@example.com — см. комментарий выше в default
       github: "github.com/yourhandle",
       telegram: "@yourhandle",
       availability: "Открыт к предложениям"

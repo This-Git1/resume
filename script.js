@@ -31,9 +31,10 @@
 
     const contacts = document.getElementById("c-contacts");
     contacts.innerHTML = "";
+    const email = d.meta.emailEncoded ? decodeEmail(d.meta.emailEncoded) : d.meta.email;
     const contactItems = [
       d.meta.location,
-      d.meta.email ? `<a href="mailto:${d.meta.email}">${d.meta.email}</a>` : null,
+      email ? `<a href="mailto:${email}">${email}</a>` : null,
       d.meta.github ? `<a href="https://${d.meta.github}" target="_blank" rel="noopener">${d.meta.github}</a>` : null,
       d.meta.telegram ? `<a href="https://t.me/${d.meta.telegram.replace('@','')}" target="_blank" rel="noopener">${d.meta.telegram}</a>` : null,
     ].filter(Boolean);
@@ -126,10 +127,11 @@
     cmd("whoami");
     out(`${escapeHtml(d.meta.name)} — <span class="term-key">${escapeHtml(d.meta.role)}</span>\n${escapeHtml(d.meta.tagline)}`);
 
+    const termEmail = d.meta.emailEncoded ? decodeEmail(d.meta.emailEncoded) : d.meta.email;
     cmd("cat contact.txt");
     out(
       `location:  ${escapeHtml(d.meta.location)}\n` +
-      `email:     ${escapeHtml(d.meta.email)}\n` +
+      `email:     ${escapeHtml(termEmail)}\n` +
       `github:    <a class="term-link" href="https://${d.meta.github}" target="_blank" rel="noopener">${escapeHtml(d.meta.github)}</a>\n` +
       `telegram:  ${escapeHtml(d.meta.telegram)}`
     );
@@ -181,6 +183,16 @@
     lines.push(`<div class="term-line" style="animation-delay:${(delay + STEP).toFixed(2)}s"><span class="term-prompt"></span><span class="term-cursor"></span></div>`);
 
     document.getElementById("terminal-body").innerHTML = lines.join("");
+  }
+
+  // Раскодирует email из base64 в рантайме — в исходном HTML/JS адрес не
+  // встречается открытым текстом, только его закодированная форма.
+  function decodeEmail(encoded) {
+    try {
+      return atob(encoded);
+    } catch (e) {
+      return "";
+    }
   }
 
   function slug(s) {
