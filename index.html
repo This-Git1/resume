@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumé</title>
+<meta name="description" content="Интерактивное резюме">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="mode-classic">
+
+  <!-- ============ MODE TOGGLE (always visible) ============ -->
+  <button id="mode-toggle" class="mode-toggle" aria-label="Переключить режим просмотра">
+    <span class="mode-toggle__track">
+      <span class="mode-toggle__option mode-toggle__option--classic">Classic</span>
+      <span class="mode-toggle__option mode-toggle__option--terminal">$ Terminal</span>
+      <span class="mode-toggle__thumb" aria-hidden="true"></span>
+    </span>
+  </button>
+
+  <!-- ============ CLASSIC VIEW ============ -->
+  <main id="classic-view" class="classic-view">
+    <header class="classic-header">
+      <p class="eyebrow">// whoami</p>
+      <h1 id="c-name" class="classic-name"></h1>
+      <p id="c-role" class="classic-role"></p>
+      <p id="c-tagline" class="classic-tagline"></p>
+      <ul id="c-contacts" class="classic-contacts"></ul>
+    </header>
+
+    <section class="classic-section">
+      <p class="eyebrow">// summary</p>
+      <p id="c-summary" class="classic-summary"></p>
+    </section>
+
+    <section class="classic-section">
+      <p class="eyebrow">// experience</p>
+      <div id="c-experience" class="classic-experience"></div>
+    </section>
+
+    <section class="classic-section">
+      <p class="eyebrow">// skills</p>
+      <div id="c-skills" class="classic-skills"></div>
+    </section>
+
+    <section class="classic-section">
+      <p class="eyebrow">// projects</p>
+      <div id="c-projects" class="classic-projects"></div>
+    </section>
+
+    <section class="classic-section">
+      <p class="eyebrow">// education</p>
+      <div id="c-education" class="classic-education"></div>
+    </section>
+
+    <footer id="c-footer" class="classic-footer"></footer>
+  </main>
+
+  <!-- ============ TERMINAL VIEW ============ -->
+  <main id="terminal-view" class="terminal-view" aria-hidden="true">
+    <div class="terminal-window">
+      <div class="terminal-titlebar">
+        <span id="t-titlebar-path" class="terminal-titlebar__path"></span>
+      </div>
+      <div id="terminal-body" class="terminal-body"></div>
+    </div>
+  </main>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
